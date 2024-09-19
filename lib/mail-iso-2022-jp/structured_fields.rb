@@ -2,40 +2,43 @@
 
 require 'mail'
 
+
 module Mail
-  class FromField < StructuredField
+  superklass = Gem::Version.new(Mail::VERSION.version) >= Gem::Version.new("2.8.0") ? CommonAddressField : StructuredField
+
+  class FromField < superklass
     include FieldWithIso2022JpEncoding
   end
 
-  class SenderField < StructuredField
+  class SenderField < superklass
     include FieldWithIso2022JpEncoding
   end
 
-  class ToField < StructuredField
+  class ToField < superklass
     include FieldWithIso2022JpEncoding
   end
 
-  class CcField < StructuredField
+  class CcField < superklass
     include FieldWithIso2022JpEncoding
   end
 
-  class ReplyToField < StructuredField
+  class ReplyToField < superklass
     include FieldWithIso2022JpEncoding
   end
 
-  class ResentFromField < StructuredField
+  class ResentFromField < superklass
     include FieldWithIso2022JpEncoding
   end
 
-  class ResentSenderField < StructuredField
+  class ResentSenderField < superklass
     include FieldWithIso2022JpEncoding
   end
 
-  class ResentToField < StructuredField
+  class ResentToField < superklass
     include FieldWithIso2022JpEncoding
   end
 
-  class ResentCcField < StructuredField
+  class ResentCcField < superklass
     include FieldWithIso2022JpEncoding
   end
 end
