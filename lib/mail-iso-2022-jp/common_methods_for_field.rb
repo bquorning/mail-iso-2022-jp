@@ -1,13 +1,6 @@
 module Mail
   module CommonMethodsForField
     private
-    def do_decode_with_iso_2022_jp_encoding
-      if charset.to_s.downcase == 'iso-2022-jp'
-        value
-      else
-        do_decode_without_iso_2022_jp_encoding
-      end
-    end
 
     def b_value_encode(string)
       string.split(' ').map do |s|
