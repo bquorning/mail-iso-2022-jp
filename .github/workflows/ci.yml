@@ -7,26 +7,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {ruby: '1.9', mail: 2.2.6}
-          - {ruby: '1.9', mail: 2.4.4}
-          - {ruby: '1.9', mail: 2.5.4}
-          - {ruby: '1.9', mail: 2.6.3}
-          - {ruby: '2.0', mail: 2.2.6}
-          - {ruby: '2.0', mail: 2.4.4}
-          - {ruby: '2.0', mail: 2.5.4}
-          - {ruby: '2.0', mail: 2.6.3}
           - {ruby: '2.4', mail: 2.2.6}
           - {ruby: '2.4', mail: 2.4.4}
           - {ruby: '2.4', mail: 2.5.4}
           - {ruby: '2.4', mail: 2.6.3}
           - {ruby: '2.4', mail: 2.6.4}
           - {ruby: '2.4', mail: 2.7.1}
-          # - {ruby: '2.5', mail: 2.2.6}
-          # - {ruby: '2.5', mail: 2.4.4}
-          # - {ruby: '2.5', mail: 2.5.4}
-          # - {ruby: '2.5', mail: 2.6.3}
-          # - {ruby: '2.5', mail: 2.6.4}
-          # - {ruby: '2.5', mail: 2.7.1}
           - {ruby: '2.6', mail: 2.2.6}
           - {ruby: '2.6', mail: 2.4.4}
           - {ruby: '2.6', mail: 2.5.4}
@@ -48,7 +34,7 @@ jobs:
           - {ruby: '3.3', mail: 2.6.6}
           - {ruby: '3.3', mail: 2.7.1}
           - {ruby: '3.3', mail: 2.8.1}
-    name: Ruby ${{ matrix.ruby }}. Mail ${{ matrix.mail }}.
+    name: Ruby ${{ matrix.ruby }}, mail ${{ matrix.mail }}
     env:
       MAIL_GEM_VERSION: ${{ matrix.mail }}
     steps:
@@ -65,22 +51,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {ruby: '1.9', mail: 2.5.4, rails: 3.2.21}
-          - {ruby: '1.9', mail: 2.6.3, rails: 4.2.0}
-          - {ruby: '2.0', mail: 2.5.4, rails: 3.2.21}
-          - {ruby: '2.0', mail: 2.6.3, rails: 4.2.0}
           - {ruby: '2.4', mail: 2.6.4, rails: 4.0.13}
           - {ruby: '2.4', mail: 2.6.4, rails: 4.1.16}
-          - {ruby: '2.4', mail: 2.6.4, rails: 4.2.10}
-          - {ruby: '2.4', mail: 2.6.4, rails: 5.0.7.2}
-          - {ruby: '2.4', mail: 2.6.4, rails: 5.1.7}
-          - {ruby: '2.4', mail: 2.6.4, rails: 5.2.3}
-          - {ruby: '2.5', mail: 2.6.4, rails: 4.0.13}
-          - {ruby: '2.5', mail: 2.6.4, rails: 4.1.16}
-          - {ruby: '2.5', mail: 2.6.4, rails: 4.2.10}
-          - {ruby: '2.5', mail: 2.6.4, rails: 5.0.7.2}
-          - {ruby: '2.5', mail: 2.6.4, rails: 5.1.7}
-          - {ruby: '2.5', mail: 2.6.4, rails: 5.2.3}
           - {ruby: '2.6', mail: 2.6.4, rails: 4.0.13}
           - {ruby: '2.6', mail: 2.6.4, rails: 4.1.16}
           - {ruby: '2.6', mail: 2.6.4, rails: 4.2.10}
@@ -128,7 +100,7 @@ jobs:
           - {ruby: '3.3', mail: 2.8.1, rails: 6.1.7.8}
           - {ruby: '3.3', mail: 2.8.1, rails: 7.1.4}
           - {ruby: '3.3', mail: 2.8.1, rails: 7.2.1}
-    name: Ruby ${{ matrix.ruby }}. Mail ${{ matrix.mail }}. Rails ${{ matrix.rails }}.
+    name: Ruby ${{ matrix.ruby }}, mail ${{ matrix.mail }}, rails ${{ matrix.rails }}
     env:
       MAIL_GEM_VERSION: ${{ matrix.mail }}
       MAIL_ISO_2022_JP_RAILS_VERSION: ${{ matrix.rails }}
