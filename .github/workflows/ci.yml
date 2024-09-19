@@ -1,0 +1,87 @@
+name: Continuous Integration
+on: push
+jobs:
+  mail-test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {ruby: 1.9.3, mail: 2.2.6}
+          - {ruby: 1.9.3, mail: 2.4.4}
+          - {ruby: 1.9.3, mail: 2.5.4}
+          - {ruby: 1.9.3, mail: 2.6.3}
+          - {ruby: 2.0.0, mail: 2.2.6}
+          - {ruby: 2.0.0, mail: 2.4.4}
+          - {ruby: 2.0.0, mail: 2.5.4}
+          - {ruby: 2.0.0, mail: 2.6.3}
+          - {ruby: 2.4.7, mail: 2.2.6}
+          - {ruby: 2.4.7, mail: 2.4.4}
+          - {ruby: 2.4.7, mail: 2.5.4}
+          - {ruby: 2.4.7, mail: 2.6.3}
+          - {ruby: 2.4.7, mail: 2.6.4}
+          - {ruby: 2.4.7, mail: 2.7.1}
+          - {ruby: 2.5.6, mail: 2.2.6}
+          - {ruby: 2.5.6, mail: 2.4.4}
+          - {ruby: 2.5.6, mail: 2.5.4}
+          - {ruby: 2.5.6, mail: 2.6.3}
+          - {ruby: 2.5.6, mail: 2.6.4}
+          - {ruby: 2.5.6, mail: 2.7.1}
+          - {ruby: 2.6.4, mail: 2.2.6}
+          - {ruby: 2.6.4, mail: 2.4.4}
+          - {ruby: 2.6.4, mail: 2.5.4}
+          - {ruby: 2.6.4, mail: 2.6.3}
+          - {ruby: 2.6.4, mail: 2.6.4}
+          - {ruby: 2.6.4, mail: 2.7.1}
+    name: Ruby ${{ matrix.ruby }}. Mail ${{ matrix.mail }}.
+    env:
+      MAIL_GEM_VERSION: ${{ matrix.mail }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: ${{ matrix.ruby }}
+      - run: bundle exec ruby -Itest test/mail_test.rb
+
+  all-test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {ruby: 1.9.3, mail: 2.5.4, rails: 3.2.21}
+          - {ruby: 1.9.3, mail: 2.6.3, rails: 4.2.0}
+          - {ruby: 2.0.0, mail: 2.5.4, rails: 3.2.21}
+          - {ruby: 2.0.0, mail: 2.6.3, rails: 4.2.0}
+          - {ruby: 2.4.7, mail: 2.6.4, rails: 4.0.13}
+          - {ruby: 2.4.7, mail: 2.6.4, rails: 4.1.16}
+          - {ruby: 2.4.7, mail: 2.6.4, rails: 4.2.10}
+          - {ruby: 2.4.7, mail: 2.6.4, rails: 5.0.7.2}
+          - {ruby: 2.4.7, mail: 2.6.4, rails: 5.1.7}
+          - {ruby: 2.4.7, mail: 2.6.4, rails: 5.2.3}
+          - {ruby: 2.5.6, mail: 2.6.4, rails: 4.0.13}
+          - {ruby: 2.5.6, mail: 2.6.4, rails: 4.1.16}
+          - {ruby: 2.5.6, mail: 2.6.4, rails: 4.2.10}
+          - {ruby: 2.5.6, mail: 2.6.4, rails: 5.0.7.2}
+          - {ruby: 2.5.6, mail: 2.6.4, rails: 5.1.7}
+          - {ruby: 2.5.6, mail: 2.6.4, rails: 5.2.3}
+          - {ruby: 2.6.4, mail: 2.6.4, rails: 4.0.13}
+          - {ruby: 2.6.4, mail: 2.6.4, rails: 4.1.16}
+          - {ruby: 2.6.4, mail: 2.6.4, rails: 4.2.10}
+          - {ruby: 2.6.4, mail: 2.6.4, rails: 5.0.7.2}
+          - {ruby: 2.6.4, mail: 2.6.4, rails: 5.1.7}
+          - {ruby: 2.6.4, mail: 2.6.4, rails: 5.2.3}
+          - {ruby: 2.6.4, mail: 2.7.1, rails: 6.0.0}
+    name: Ruby ${{ matrix.ruby }}. Mail ${{ matrix.mail }}. Rails ${{ matrix.rails }}.
+    env:
+      MAIL_GEM_VERSION: ${{ matrix.mail }}
+      MAIL_ISO_2022_JP_RAILS_VERSION: ${{ matrix.rails }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: ${{ matrix.ruby }}
+      - run: bundle exec rake test_all
+
