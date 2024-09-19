@@ -1,3 +1,6 @@
+
+ * Drop support for Ruby 2.2.x
+
 ## 2.0.8 (2018-02-23)
 
  * Support mail 2.7.0

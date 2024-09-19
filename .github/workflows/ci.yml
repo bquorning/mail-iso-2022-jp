@@ -7,6 +7,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
+
+          - {ruby: '2.3', mail: 2.2.6}
+          - {ruby: '2.3', mail: 2.3.0}
+          - {ruby: '2.3', mail: 2.4.0}
+          - {ruby: '2.3', mail: 2.5.0}
+          - {ruby: '2.3', mail: 2.6.0}
+          - {ruby: '2.3', mail: 2.7.0}
+
           - {ruby: '2.4', mail: 2.3.3}
           - {ruby: '2.4', mail: 2.4.4}
           - {ruby: '2.4', mail: 2.5.4}
@@ -21,19 +29,14 @@ jobs:
           - {ruby: '2.6', mail: 2.7.1}
           - {ruby: '2.7', mail: 2.6.6}
           - {ruby: '2.7', mail: 2.7.1}
-          - {ruby: '2.7', mail: 2.8.1}
           - {ruby: '3.0', mail: 2.6.6}
           - {ruby: '3.0', mail: 2.7.1}
-          - {ruby: '3.0', mail: 2.8.1}
           - {ruby: '3.1', mail: 2.6.6}
           - {ruby: '3.1', mail: 2.7.1}
-          - {ruby: '3.1', mail: 2.8.1}
           - {ruby: '3.2', mail: 2.6.6}
           - {ruby: '3.2', mail: 2.7.1}
-          - {ruby: '3.2', mail: 2.8.1}
           - {ruby: '3.3', mail: 2.6.6}
           - {ruby: '3.3', mail: 2.7.1}
-          - {ruby: '3.3', mail: 2.8.1}
     name: Ruby ${{ matrix.ruby }}, mail ${{ matrix.mail }}
     env:
       MAIL_GEM_VERSION: ${{ matrix.mail }}
@@ -51,6 +54,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
+
+          - {ruby: '2.3', mail: 2.2.6, rails: 4.0.13}
+          - {ruby: '2.3', mail: 2.3.0, rails: 4.0.13}
+          - {ruby: '2.3', mail: 2.4.0, rails: 4.0.13}
+          - {ruby: '2.3', mail: 2.5.0, rails: 4.0.13}
+          - {ruby: '2.3', mail: 2.6.0, rails: 4.0.13}
+          - {ruby: '2.3', mail: 2.7.0, rails: 4.0.13}
+
           - {ruby: '2.4', mail: 2.6.4, rails: 4.0.13}
           - {ruby: '2.4', mail: 2.6.4, rails: 4.1.16}
           - {ruby: '2.6', mail: 2.6.4, rails: 4.0.13}
@@ -68,38 +79,24 @@ jobs:
           - {ruby: '2.7', mail: 2.7.1, rails: 6.1.7.8}
           - {ruby: '2.7', mail: 2.7.1, rails: 7.0.8.4}
           - {ruby: '2.7', mail: 2.7.1, rails: 7.1.4}
-          - {ruby: '2.7', mail: 2.8.1, rails: 6.0.6.1}
-          - {ruby: '2.7', mail: 2.8.1, rails: 6.1.7.8}
-          - {ruby: '2.7', mail: 2.8.1, rails: 7.0.8.4}
-          - {ruby: '2.7', mail: 2.8.1, rails: 7.1.4}
           - {ruby: '3.0', mail: 2.6.6, rails: 6.1.7.8}
           - {ruby: '3.0', mail: 2.6.6, rails: 7.0.8.4}
           - {ruby: '3.0', mail: 2.6.6, rails: 7.1.4}
           - {ruby: '3.0', mail: 2.7.1, rails: 6.1.7.8}
           - {ruby: '3.0', mail: 2.7.1, rails: 7.0.8.4}
           - {ruby: '3.0', mail: 2.7.1, rails: 7.1.4}
-          - {ruby: '3.0', mail: 2.8.1, rails: 6.1.7.8}
-          - {ruby: '3.0', mail: 2.8.1, rails: 7.0.8.4}
-          - {ruby: '3.0', mail: 2.8.1, rails: 7.1.4}
           - {ruby: '3.1', mail: 2.6.6, rails: 6.1.7.8}
           - {ruby: '3.1', mail: 2.6.6, rails: 7.1.4}
           - {ruby: '3.1', mail: 2.7.1, rails: 6.1.7.8}
           - {ruby: '3.1', mail: 2.7.1, rails: 7.1.4}
-          - {ruby: '3.1', mail: 2.8.1, rails: 6.1.7.8}
-          - {ruby: '3.1', mail: 2.8.1, rails: 7.1.4}
           - {ruby: '3.2', mail: 2.6.6, rails: 6.1.7.8}
           - {ruby: '3.2', mail: 2.6.6, rails: 7.1.4}
           - {ruby: '3.2', mail: 2.7.1, rails: 6.1.7.8}
           - {ruby: '3.2', mail: 2.7.1, rails: 7.1.4}
-          - {ruby: '3.2', mail: 2.8.1, rails: 6.1.7.8}
-          - {ruby: '3.2', mail: 2.8.1, rails: 7.1.4}
           - {ruby: '3.3', mail: 2.6.6, rails: 6.1.7.8}
           - {ruby: '3.3', mail: 2.6.6, rails: 7.1.4}
           - {ruby: '3.3', mail: 2.7.1, rails: 6.1.7.8}
           - {ruby: '3.3', mail: 2.7.1, rails: 7.1.4}
-          - {ruby: '3.3', mail: 2.8.1, rails: 6.1.7.8}
-          - {ruby: '3.3', mail: 2.8.1, rails: 7.1.4}
-          - {ruby: '3.3', mail: 2.8.1, rails: 7.2.1}
     name: Ruby ${{ matrix.ruby }}, mail ${{ matrix.mail }}, rails ${{ matrix.rails }}
     env:
       MAIL_GEM_VERSION: ${{ matrix.mail }}
