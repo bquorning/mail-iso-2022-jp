@@ -111,26 +111,24 @@ class MailTest < ActiveSupport::TestCase
     assert_equal "Cc: =?ISO-2022-JP?B?WBskQjt2TDM2SRsoQg==?= <info@example.com>, \r\n =?ISO-2022-JP?B?GyRCO3ZMMzZJRDkbKEI=?= <boss@example.com>\r\n", mail[:cc].encoded
   end
 
-  if RUBY_VERSION >= '1.9'
-    test "should raise exeception if the encoding of subject is not UTF-8" do
-      assert_raise Mail::InvalidEncodingError do
-        Mail.new(:charset => 'ISO-2022-JP') do
-          from [ '山田太郎 <taro@example.com>' ]
-          to [ '佐藤花子 <hanako@example.com>' ]
-          subject NKF.nkf("-Wj", '日本語 件名')
-          body '日本語本文'
-        end
+  test "should raise exeception if the encoding of subject is not UTF-8" do
+    assert_raise Mail::InvalidEncodingError do
+      Mail.new(:charset => 'ISO-2022-JP') do
+        from [ '山田太郎 <taro@example.com>' ]
+        to [ '佐藤花子 <hanako@example.com>' ]
+        subject NKF.nkf("-Wj", '日本語 件名')
+        body '日本語本文'
       end
     end
+  end
 
-    test "should raise exeception if the encoding of mail body is not UTF-8" do
-      assert_raise Mail::InvalidEncodingError do
-        Mail.new(:charset => 'ISO-2022-JP') do
-          from [ '山田太郎 <taro@example.com>' ]
-          to [ '佐藤花子 <hanako@example.com>' ]
-          subject '日本語件名'
-          body NKF.nkf("-Wj", '日本語本文')
-        end
+  test "should raise exeception if the encoding of mail body is not UTF-8" do
+    assert_raise Mail::InvalidEncodingError do
+      Mail.new(:charset => 'ISO-2022-JP') do
+        from [ '山田太郎 <taro@example.com>' ]
+        to [ '佐藤花子 <hanako@example.com>' ]
+        subject '日本語件名'
+        body NKF.nkf("-Wj", '日本語本文')
       end
     end
   end
@@ -258,12 +256,8 @@ class MailTest < ActiveSupport::TestCase
     assert_equal "Subject: =?ISO-2022-JP?B?GyRCfGJ5dRsoQg==?=\r\n", mail[:subject].encoded
     assert_equal text, NKF.nkf('-w', mail.body.encoded)
 
-    if RUBY_VERSION >= '1.9'
-      assert_equal NKF.nkf('--oc=CP50220 -j', text).force_encoding('ascii-8bit'),
-        mail.body.encoded.force_encoding('ascii-8bit')
-    else
-      assert_equal NKF.nkf('--oc=CP50220 -j', text), mail.body.encoded
-    end
+    assert_equal NKF.nkf('--oc=CP50220 -j', text).force_encoding('ascii-8bit'),
+      mail.body.encoded.force_encoding('ascii-8bit')
   end
 
   test "should handle hankaku kana correctly" do

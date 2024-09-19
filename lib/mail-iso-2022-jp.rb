@@ -19,19 +19,11 @@ else
   require 'mail-iso-2022-jp/mail_under_280/invalid_encoding_error'
   require 'mail-iso-2022-jp/mail_under_280/common_methods_for_field'
   require 'mail-iso-2022-jp/mail_under_280/preprocessor'
-
-  if RUBY_VERSION >= '1.9'
-    require 'mail-iso-2022-jp/mail_under_280/mail'
-    require 'mail-iso-2022-jp/mail_under_280/message'
-    require 'mail-iso-2022-jp/mail_under_280/field'
-    require 'mail-iso-2022-jp/mail_under_280/field_with_iso_2022_jp_encoding'
-    require 'mail-iso-2022-jp/mail_under_280/body'
-  else
-    require 'mail-iso-2022-jp/ruby18/mail'
-    require 'mail-iso-2022-jp/ruby18/message'
-    require 'mail-iso-2022-jp/ruby18/field_with_iso_2022_jp_encoding'
-  end
-
+  require 'mail-iso-2022-jp/mail_under_280/mail'
+  require 'mail-iso-2022-jp/mail_under_280/message'
+  require 'mail-iso-2022-jp/mail_under_280/field'
+  require 'mail-iso-2022-jp/mail_under_280/field_with_iso_2022_jp_encoding'
+  require 'mail-iso-2022-jp/mail_under_280/body'
   require 'mail-iso-2022-jp/mail_under_280/header'
   require 'mail-iso-2022-jp/mail_under_280/subject_field'
   require 'mail-iso-2022-jp/mail_under_280/structured_fields'
