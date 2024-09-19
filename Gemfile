@@ -26,7 +26,3 @@ group :development, :test do
   end
   gem "rdoc", ">= 3.12"
 end
-
-if RUBY_VERSION < "2.5"
-  gem "loofah", ">= 2.21.4"
-end
