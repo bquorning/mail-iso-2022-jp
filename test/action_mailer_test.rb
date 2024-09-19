@@ -43,7 +43,7 @@ class ActionMailerTest < ActiveSupport::TestCase
     eml = File.open(File.dirname(__FILE__) + '/data/sample0.eml').read
     mail = Iso2022jpMailer.receive(eml)
     assert_equal NKF::JIS, NKF.guess(mail.body.decoded)
-    assert_equal "投稿テスト\n--\nyamada@example.jp", NKF.nkf("-Jw", mail.body.decoded)
+    assert_equal "投稿テスト\n--\nyamada@example.jp\n", NKF.nkf("-Jw", mail.body.decoded)
   end
 end
 
