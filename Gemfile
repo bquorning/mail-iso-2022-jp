@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gemspec path: "."
+
 if mail_gem_version = ENV['MAIL_GEM_VERSION']
   if mail_gem_version == "HEAD"
     gem "mail", :git => "git@github.com:mikel/mail.git"
