@@ -1,0 +1,109 @@
+# Auto generated files with errors to ignore.
+# Remove from this list as you refactor files.
+---
+ignore:
+- Gemfile:
+  - Style/HashSyntax
+  - Layout/TrailingEmptyLines
+- Rakefile:
+  - Style/HashSyntax
+  - Layout/ExtraSpacing
+- lib/mail-iso-2022-jp/body.rb:
+  - Style/Encoding
+- lib/mail-iso-2022-jp/character_names.rb:
+  - Style/Encoding
+  - Lint/ConstantDefinitionInBlock
+- lib/mail-iso-2022-jp/common_methods_for_field.rb:
+  - Layout/EmptyLinesAroundAccessModifier
+  - Style/SuperArguments
+  - Performance/StringReplacement
+  - Performance/ConstantRegexp
+  - Style/RedundantAssignment
+  - Style/RedundantRegexpEscape
+- lib/mail-iso-2022-jp/field.rb:
+  - Style/Encoding
+  - Style/ClassCheck
+  - Layout/SpaceInsideArrayLiteralBrackets
+  - Layout/MultilineMethodCallBraceLayout
+- lib/mail-iso-2022-jp/field_with_iso_2022_jp_encoding.rb:
+  - Style/Encoding
+  - Style/ConditionalAssignment
+  - Style/ClassCheck
+  - Layout/EmptyLinesAroundAccessModifier
+  - Style/SuperArguments
+- lib/mail-iso-2022-jp/header.rb:
+  - Style/Encoding
+  - Style/RescueModifier
+- lib/mail-iso-2022-jp/mail.rb:
+  - Style/Encoding
+  - Lint/ConstantDefinitionInBlock
+  - Layout/SpaceInsideHashLiteralBraces
+  - Style/HashSyntax
+- lib/mail-iso-2022-jp/mail_under_280/body.rb:
+  - Style/Encoding
+- lib/mail-iso-2022-jp/mail_under_280/character_names.rb:
+  - Style/Encoding
+- lib/mail-iso-2022-jp/mail_under_280/common_methods_for_field.rb:
+  - Layout/EmptyLinesAroundAccessModifier
+  - Style/SuperArguments
+  - Performance/StringReplacement
+  - Performance/ConstantRegexp
+  - Style/RedundantAssignment
+  - Style/RedundantRegexpEscape
+- lib/mail-iso-2022-jp/mail_under_280/field.rb:
+  - Style/Encoding
+  - Style/ClassCheck
+  - Layout/SpaceInsideArrayLiteralBrackets
+  - Layout/MultilineMethodCallBraceLayout
+- lib/mail-iso-2022-jp/mail_under_280/field_with_iso_2022_jp_encoding.rb:
+  - Style/Encoding
+  - Style/ConditionalAssignment
+  - Style/ClassCheck
+  - Layout/EmptyLinesAroundAccessModifier
+  - Style/SuperArguments
+- lib/mail-iso-2022-jp/mail_under_280/header.rb:
+  - Style/Encoding
+  - Style/RescueModifier
+- lib/mail-iso-2022-jp/mail_under_280/mail.rb:
+  - Style/Encoding
+  - Layout/SpaceInsideHashLiteralBraces
+  - Style/HashSyntax
+- lib/mail-iso-2022-jp/mail_under_280/message.rb:
+  - Style/Encoding
+  - Layout/MultilineMethodCallBraceLayout
+- lib/mail-iso-2022-jp/mail_under_280/preprocessor.rb:
+  - Layout/DotPosition
+  - Performance/ConstantRegexp
+- lib/mail-iso-2022-jp/mail_under_280/structured_fields.rb:
+  - Style/Encoding
+- lib/mail-iso-2022-jp/mail_under_280/subject_field.rb:
+  - Style/Encoding
+  - Layout/EmptyLinesAfterModuleInclusion
+- lib/mail-iso-2022-jp/message.rb:
+  - Style/Encoding
+  - Layout/MultilineMethodCallBraceLayout
+- lib/mail-iso-2022-jp/preprocessor.rb:
+  - Layout/DotPosition
+  - Performance/ConstantRegexp
+- lib/mail-iso-2022-jp/structured_fields.rb:
+  - Style/Encoding
+- lib/mail-iso-2022-jp/subject_field.rb:
+  - Style/Encoding
+  - Layout/EmptyLinesAfterModuleInclusion
+- mail-iso-2022-jp.gemspec:
+  - Layout/SpaceAfterComma
+  - Layout/ExtraSpacing
+  - Style/PercentLiteralDelimiters
+- test/action_mailer_test.rb:
+  - Style/Encoding
+  - Style/RedundantStringEscape
+  - Style/FileRead
+  - Style/HashSyntax
+  - Layout/SpaceInsideArrayLiteralBrackets
+- test/mail_test.rb:
+  - Style/Encoding
+  - Style/HashSyntax
+  - Style/RedundantStringEscape
+  - Layout/SpaceInsideArrayLiteralBrackets
+  - Layout/ExtraSpacing
+  - Performance/StringReplacement

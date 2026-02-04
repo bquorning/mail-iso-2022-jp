@@ -70,10 +70,8 @@ class MailTest < ActiveSupport::TestCase
     assert_equal "From: =?ISO-2022-JP?B?Ig==?= =?ISO-2022-JP?B?PFlhbWFkYQ==?= =?ISO-2022-JP?B?GyRCQkBPOhsoQj4i?= <taro@example.com>\r\n", mail[:from].encoded
     assert_equal "To: =?ISO-2022-JP?B?IjwbJEI6NEYjGyhC?= =?ISO-2022-JP?B?SGFuYWtvPg==?= =?ISO-2022-JP?B?Ig==?= <hanako@example.com>\r\n", mail[:to].encoded
     assert_equal "Cc: =?ISO-2022-JP?B?Ig==?= =?ISO-2022-JP?B?PFgbJEI7dkwzNkkbKEI+?= =?ISO-2022-JP?B?Ig==?= <info@example.com>\r\n", mail[:cc].encoded
-    version_numbers = ENV['MAIL_GEM_VERSION'].split('.')
-    major_version_number = version_numbers[0].to_i
-    minor_version_number = version_numbers[1].to_i
-    if (major_version_number == 2 && minor_version_number >= 7) || major_version_number > 2
+
+    if Gem::Version.new(Mail::VERSION.version) >= Gem::Version.new("2.7")
       assert_equal "", mail[:subject].encoded
     else
       assert_equal "Subject: \r\n", mail[:subject].encoded
