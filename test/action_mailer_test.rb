@@ -2,14 +2,13 @@
 
 $:.unshift File.dirname(__FILE__)
 require 'test_helper'
-require 'active_support'
 require 'action_mailer'
 require 'nkf'
 require 'mail'
 require 'mail-iso-2022-jp'
 
-class ActionMailerTest < ActiveSupport::TestCase
-  test "should send with ISO-2022-JP encoding" do
+class ActionMailerTest < Minitest::Test
+  def test_sends_with_ISO_2022_JP_encoding
     mail = Iso2022jpMailer.notice
     assert_equal NKF::JIS, NKF.guess(mail.subject)
     assert_equal "From: =?ISO-2022-JP?B?GyRCOzNFREJATzobKEI=?= <taro@example.com>\r\n", mail[:from].encoded
@@ -19,7 +18,7 @@ class ActionMailerTest < ActiveSupport::TestCase
     assert_equal NKF::JIS, NKF.guess(mail.body.encoded)
   end
 
-  test "should send with UTF-8 encoding" do
+  def test_sends_with_UTF_8_encoding
     mail = OriginMailer.notice
     assert_equal NKF::UTF8, NKF.guess(mail.subject)
     assert_equal "From: =?UTF-8?B?5bGx55Sw5aSq6YOO?= <taro@example.com>\r\n", mail[:from].encoded
@@ -29,7 +28,7 @@ class ActionMailerTest < ActiveSupport::TestCase
     assert_equal NKF::UTF8, NKF.guess(mail.body.encoded)
   end
 
-  test "should handle array correctly" do
+  def test_handles_array_correctly
     mail = Iso2022jpMailer.notice2
     assert_equal NKF::JIS, NKF.guess(mail.subject)
     assert_equal "From: =?ISO-2022-JP?B?GyRCOzNFREJATzobKEI=?= <taro@example.com>\r\n", mail[:from].encoded
@@ -39,7 +38,7 @@ class ActionMailerTest < ActiveSupport::TestCase
     assert_equal NKF::JIS, NKF.guess(mail.body.encoded)
   end
 
-  # test "should handle a received mail correctly" do
+  # def test_handles_a_received_mail_correctly
   #   eml = File.open(File.dirname(__FILE__) + '/data/sample0.eml').read
   #   mail = Iso2022jpMailer.receive(eml)
   #   assert_equal NKF::JIS, NKF.guess(mail.body.decoded)
