@@ -1,5 +1,7 @@
 name: CI
 on: push
+env:
+  RUBYOPT: --enable=frozen-string-literal --debug=frozen-string-literal
 jobs:
   mail-test:
     runs-on: ubuntu-latest
