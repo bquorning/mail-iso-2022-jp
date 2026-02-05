@@ -6,13 +6,8 @@ require 'nkf'
 require 'mail'
 require 'mail-iso-2022-jp'
 
-# Suppress deprecation warning.
-if ActiveSupport.respond_to?(:test_order=)
-  ActiveSupport.test_order = :sorted
-end
-
-class MailTest < ActiveSupport::TestCase
-  test "should send with ISO-2022-JP encoding" do
+class MailTest < Minitest::Test
+  def test_sends_with_ISO_2022_JP_encoding
     mail = Mail.new(:charset => 'ISO-2022-JP') do
       from '山田太郎 <taro@example.com>'
       sender 'X事務局 <info@example.com>'
@@ -41,7 +36,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal NKF::JIS, NKF.guess(mail.body.encoded)
   end
 
-  test "should send with ISO-2022-JP encoding and empty subject" do
+  def test_sends_with_ISO_2022_JP_encoding_and_empty_subject
     mail = Mail.new(:charset => 'ISO-2022-JP') do
       from '山田太郎 <taro@example.com>'
       to '佐藤花子 <hanako@example.com>'
@@ -58,7 +53,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal NKF::JIS, NKF.guess(mail.body.encoded)
   end
 
-  test "should send with ISO-2022-JP encoding and quoted display-name" do
+  def test_sends_with_ISO_2022_JP_encoding_and_quoted_display_name
     mail = Mail.new(:charset => 'ISO-2022-JP') do
       from '" <Yamada 太郎>" <taro@example.com>'
       to '"<佐藤 Hanako> " <hanako@example.com>'
@@ -79,7 +74,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal NKF::JIS, NKF.guess(mail.body.encoded)
   end
 
-  test "should send with UTF-8 encoding" do
+  def test_sends_with_UTF_8_encoding
     mail = Mail.new do
       from '山田太郎 <taro@example.com>'
       to '佐藤花子 <hanako@example.com>'
@@ -96,7 +91,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal NKF::UTF8, NKF.guess(mail.body.encoded)
   end
 
-  test "should handle array correctly" do
+  def test_handles_array_correctly
     mail = Mail.new(:charset => 'ISO-2022-JP') do
       from [ '山田太郎 <taro@example.com>', '山田次郎 <jiro@example.com>' ]
       to [ '佐藤花子 <hanako@example.com>', '佐藤好子 <yoshiko@example.com>' ]
@@ -109,8 +104,8 @@ class MailTest < ActiveSupport::TestCase
     assert_equal "Cc: =?ISO-2022-JP?B?WBskQjt2TDM2SRsoQg==?= <info@example.com>, \r\n =?ISO-2022-JP?B?GyRCO3ZMMzZJRDkbKEI=?= <boss@example.com>\r\n", mail[:cc].encoded
   end
 
-  test "should raise exeception if the encoding of subject is not UTF-8" do
-    assert_raise Mail::InvalidEncodingError do
+  def test_raises_exeception_if_the_encoding_of_subject_is_not_UTF_8
+    assert_raises Mail::InvalidEncodingError do
       Mail.new(:charset => 'ISO-2022-JP') do
         from [ '山田太郎 <taro@example.com>' ]
         to [ '佐藤花子 <hanako@example.com>' ]
@@ -120,8 +115,8 @@ class MailTest < ActiveSupport::TestCase
     end
   end
 
-  test "should raise exeception if the encoding of mail body is not UTF-8" do
-    assert_raise Mail::InvalidEncodingError do
+  def test_raises_exeception_if_the_encoding_of_mail_body_is_not_UTF_8
+    assert_raises Mail::InvalidEncodingError do
       Mail.new(:charset => 'ISO-2022-JP') do
         from [ '山田太郎 <taro@example.com>' ]
         to [ '佐藤花子 <hanako@example.com>' ]
@@ -131,7 +126,7 @@ class MailTest < ActiveSupport::TestCase
     end
   end
 
-  test "should handle wave dash (U+301C) and fullwidth tilde (U+FF5E) correctly" do
+  def test_handles_wave_dash_U_301C_and_fullwidth_tilde_U_FF5E_correctly
     wave_dash = [0x301c].pack("U")
     fullwidth_tilde = [0xff5e].pack("U")
 
@@ -150,7 +145,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal text2, NKF.nkf('-w', mail.body.encoded)
   end
 
-  test "should handle minus sign (U+2212) and fullwidth hypen minus (U+ff0d) correctly" do
+  def test_handles_minus_sign_U_2212_and_fullwidth_hypen_minus_u_ff0d_correctly
     minus_sign = [0x2212].pack("U")
     fullwidth_hyphen_minus = [0xff0d].pack("U")
 
@@ -170,7 +165,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal text2, NKF.nkf('-w', mail.body.encoded)
   end
 
-  test "should handle em dash (U+2014) and horizontal bar (U+2015) correctly" do
+  def test_handles_em_dash_U_2014_and_horizontal_bar_U_2015_correctly
     em_dash = [0x2014].pack("U")
     horizontal_bar = [0x2015].pack("U")
 
@@ -189,7 +184,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal text2, NKF.nkf('-w', mail.body.encoded)
   end
 
-  test "should handle double vertical line (U+2016) and parallel to (U+2225) correctly" do
+  def test_handles_double_vertical_line_U_2016_and_parallel_to_U_2225_correctly
     double_vertical_line = [0x2016].pack("U")
     parallel_to = [0x2225].pack("U")
 
@@ -212,7 +207,7 @@ class MailTest < ActiveSupport::TestCase
   # FULLWIDTH CENT SIGN       (0xffe0) ￠
   # FULLWIDTH POUND SIGN      (0xffe1) ￡
   # FULLWIDTH NOT SIGN        (0xffe2) ￢
-  test "should handle some special characters correctly" do
+  def test_handles_some_special_characters_correctly
     special_characters = [0xff3c, 0xffe0, 0xffe1, 0xffe2].pack("U")
 
     mail = Mail.new(:charset => 'ISO-2022-JP') do
@@ -226,7 +221,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal special_characters, NKF.nkf('-w', mail.body.encoded)
   end
 
-  test "should handle numbers in circle correctly" do
+  def test_handles_numbers_in_circle_correctly
     text = "①②③④⑤⑥⑦⑧⑨"
 
     mail = Mail.new(:charset => 'ISO-2022-JP') do
@@ -240,7 +235,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal text, NKF.nkf('-w', mail.body.encoded)
   end
 
-  test "should handle 'hashigodaka' and 'tatsusaki' correctly" do
+  def test_handles_hashigodaka_and_tatsusaki_correctly
     text = "髙﨑"
 
     mail = Mail.new(:charset => 'ISO-2022-JP') do
@@ -258,7 +253,7 @@ class MailTest < ActiveSupport::TestCase
       mail.body.encoded.force_encoding('ascii-8bit')
   end
 
-  test "should handle hankaku kana correctly" do
+  def test_handles_hankaku_kana_correctly
     text = "ｱｲｳｴｵ"
 
     mail = Mail.new(:charset => 'ISO-2022-JP') do
@@ -272,7 +267,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal text, NKF.nkf('-xw', mail.body.encoded)
   end
 
-  test "should handle frozen texts correctly" do
+  def test_handles_frozen_texts_correctly
     mail = Mail.new(:charset => 'ISO-2022-JP') do
       from 'taro@example.com'
       to 'hanako@example.com'
@@ -284,13 +279,13 @@ class MailTest < ActiveSupport::TestCase
     assert_equal "text", NKF.nkf('-xw', mail.body.encoded)
   end
 
-  test "should convert ibm special characters correctly" do
+  def test_converts_ibm_special_characters_correctly
     text = "髙﨑"
     j = NKF.nkf('--oc=CP50220 -j', text)
     assert_equal "GyRCfGJ5dRsoQg==", Base64.encode64(j).gsub("\n", "")
   end
 
-  test "should convert wave dash to zenkaku" do
+  def test_converts_wave_dash_to_zenkaku
     fullwidth_tilde = "～"
     assert_equal [0xef, 0xbd, 0x9e], fullwidth_tilde.unpack("C*")
     wave_dash = "〜"
@@ -300,7 +295,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal wave_dash, NKF.nkf("-w", j)
   end
 
-  test "should keep hankaku kana as is" do
+  def test_keeps_hankaku_kana_as_is
     text = "ｱｲｳｴｵ"
     j = NKF.nkf('--oc=CP50220 -x -j', text)
     e = Base64.encode64(j).gsub("\n", "")
@@ -308,7 +303,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal "ｱｲｳｴｵ", NKF.nkf("-xw", j)
   end
 
-  test "should replace unconvertable characters with question marks" do
+  def test_replaces_unconvertable_characters_with_question_marks
     text = "(\xe2\x88\xb0\xe2\x88\xb1\xe2\x88\xb2)"
 
     mail = Mail.new(:charset => 'ISO-2022-JP') do
@@ -322,7 +317,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal "(???)", NKF.nkf('-Jwx', mail.body.encoded)
   end
 
-  test "should encode the text part of multipart mail" do
+  def test_encodes_the_text_part_of_multipart_mail
     text = 'こんにちは、世界！'
 
     mail = Mail.new(:charset => 'ISO-2022-JP') do
@@ -343,7 +338,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal NKF::JIS, NKF.guess(mail.text_part.body.encoded)
   end
 
-  test "should not encode the text part of multipart mail if the charset is set" do
+  def test_does_not_encode_the_text_part_of_multipart_mail_if_the_charset_is_set
     text = 'こんにちは、世界！'
 
     mail = Mail.new(:charset => 'ISO-2022-JP') do
@@ -364,7 +359,7 @@ class MailTest < ActiveSupport::TestCase
     assert_equal NKF::UTF8, NKF.guess(mail.text_part.body.encoded)
   end
 
-  test "should handle lowercase charset in unstructured fields" do
+  def test_handles_lowercase_charset_in_unstructured_fields
     mail = Mail.new(:charset => 'iso-2022-jp')
     mail["User-Agent"] = "test mailer"
     assert_equal "User-Agent: test mailer\r\n", mail["User-Agent"].encoded

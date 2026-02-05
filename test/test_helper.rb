@@ -1,6 +1,5 @@
-require 'rubygems'
 require 'minitest/autorun'
-require 'active_support'
+require 'minitest/rg'
 
 $:.unshift File.dirname(__FILE__) + '/..'
 $:.unshift File.dirname(__FILE__)

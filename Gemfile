@@ -3,9 +3,8 @@ source "https://rubygems.org"
 gemspec
 
 gem "rake"
-gem "activesupport"
 gem "minitest"
-gem "test-unit"
+gem "minitest-rg"
 gem 'net-imap', '~> 0.2.2'
 gem 'net-pop', '~> 0.1.1'
 gem 'net-smtp', '~> 0.3.0'
@@ -27,5 +26,5 @@ if rails_version == "edge"
 elsif rails_version
   gem "actionmailer", rails_version
 else
-  gem "actionmailer"
+  gem "actionmailer", ">= 7.2"
 end
