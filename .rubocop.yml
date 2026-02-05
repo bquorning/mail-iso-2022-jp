@@ -1,0 +1,19 @@
+require:
+  - standard
+
+plugins:
+  - standard-custom
+  - standard-performance
+  - rubocop-minitest
+  - rubocop-performance
+  - rubocop-rake
+
+inherit_gem:
+  standard: config/base.yml
+  standard-custom: config/base.yml
+  standard-performance: config/base.yml
+
+AllCops:
+  NewCops: enable
+
+Minitest/MultipleAssertions: {Enabled: false}

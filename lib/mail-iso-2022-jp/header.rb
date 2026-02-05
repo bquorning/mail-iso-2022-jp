@@ -1,11 +1,11 @@
-# coding: utf-8
-
 module MailIso2022Jp
   module Header
     def encoded
-      buffer = String.new
+      buffer = +""
       fields.each do |field|
-        buffer << field.encoded rescue Encoding::CompatibilityError
+        buffer << field.encoded
+      rescue
+        Encoding::CompatibilityError
       end
       buffer
     end

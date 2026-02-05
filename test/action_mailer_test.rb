@@ -1,25 +1,25 @@
-# coding: utf-8
-
 $:.unshift File.dirname(__FILE__)
-require 'test_helper'
-require 'action_mailer'
-require 'nkf'
-require 'mail'
-require 'mail-iso-2022-jp'
+require "test_helper"
+require "action_mailer"
+require "nkf"
+require "mail"
+require "mail-iso-2022-jp"
 
 class ActionMailerTest < Minitest::Test
   def test_sends_with_ISO_2022_JP_encoding
     mail = Iso2022jpMailer.notice
+
     assert_equal NKF::JIS, NKF.guess(mail.subject)
     assert_equal "From: =?ISO-2022-JP?B?GyRCOzNFREJATzobKEI=?= <taro@example.com>\r\n", mail[:from].encoded
     assert_equal "To: =?ISO-2022-JP?B?GyRCOjRGIzJWO1IbKEI=?= <hanako@example.com>\r\n", mail[:to].encoded
     assert_equal "Cc: =?ISO-2022-JP?B?GyRCO3ZMMzZJGyhC?= <info@example.com>\r\n", mail[:cc].encoded
-    assert_equal "Subject: =?ISO-2022-JP?B?GyRCRnxLXDhsGyhCIBskQjdvTD4bKEI=\?=\r\n", mail[:subject].encoded
+    assert_equal "Subject: =?ISO-2022-JP?B?GyRCRnxLXDhsGyhCIBskQjdvTD4bKEI=?=\r\n", mail[:subject].encoded
     assert_equal NKF::JIS, NKF.guess(mail.body.encoded)
   end
 
   def test_sends_with_UTF_8_encoding
     mail = OriginMailer.notice
+
     assert_equal NKF::UTF8, NKF.guess(mail.subject)
     assert_equal "From: =?UTF-8?B?5bGx55Sw5aSq6YOO?= <taro@example.com>\r\n", mail[:from].encoded
     assert_equal "To: =?UTF-8?B?5L2Q6Jek6Iqx5a2Q?= <hanako@example.com>\r\n", mail[:to].encoded
@@ -30,11 +30,12 @@ class ActionMailerTest < Minitest::Test
 
   def test_handles_array_correctly
     mail = Iso2022jpMailer.notice2
+
     assert_equal NKF::JIS, NKF.guess(mail.subject)
     assert_equal "From: =?ISO-2022-JP?B?GyRCOzNFREJATzobKEI=?= <taro@example.com>\r\n", mail[:from].encoded
     assert_equal "To: =?ISO-2022-JP?B?GyRCOjRGIzJWO1IbKEI=?= <hanako@example.com>, \r\n =?ISO-2022-JP?B?GyRCOjRGIzklO1IbKEI=?= <yoshiko@example.com>\r\n", mail[:to].encoded
     assert_equal "Cc: =?ISO-2022-JP?B?GyRCO3ZMMzZJGyhC?= <info@example.com>\r\n", mail[:cc].encoded
-    assert_equal "Subject: =?ISO-2022-JP?B?GyRCRnxLXDhsGyhCIBskQjdvTD4bKEI=\?=\r\n", mail[:subject].encoded
+    assert_equal "Subject: =?ISO-2022-JP?B?GyRCRnxLXDhsGyhCIBskQjdvTD4bKEI=?=\r\n", mail[:subject].encoded
     assert_equal NKF::JIS, NKF.guess(mail.body.encoded)
   end
 
@@ -47,19 +48,19 @@ class ActionMailerTest < Minitest::Test
 end
 
 class Iso2022jpMailer < ActionMailer::Base
-  default :charset => 'ISO-2022-JP',
-    :from => "山田太郎 <taro@example.com>",
-    :cc => "事務局 <info@example.com>"
+  default charset: "ISO-2022-JP",
+    from: "山田太郎 <taro@example.com>",
+    cc: "事務局 <info@example.com>"
 
   def notice
-    mail(:to => '佐藤花子 <hanako@example.com>', :subject => '日本語 件名') do |format|
-      format.text { render :inline => '日本語本文' }
+    mail(to: "佐藤花子 <hanako@example.com>", subject: "日本語 件名") do |format|
+      format.text { render inline: "日本語本文" }
     end
   end
 
   def notice2
-    mail(:to => [ '佐藤花子 <hanako@example.com>', '佐藤好子 <yoshiko@example.com>' ], :subject => '日本語 件名') do |format|
-      format.text { render :inline => '日本語本文' }
+    mail(to: ["佐藤花子 <hanako@example.com>", "佐藤好子 <yoshiko@example.com>"], subject: "日本語 件名") do |format|
+      format.text { render inline: "日本語本文" }
     end
   end
 
@@ -69,12 +70,12 @@ class Iso2022jpMailer < ActionMailer::Base
 end
 
 class OriginMailer < ActionMailer::Base
-  default :from => "山田太郎 <taro@example.com>",
-    :cc => "事務局 <info@example.com>"
+  default from: "山田太郎 <taro@example.com>",
+    cc: "事務局 <info@example.com>"
 
   def notice
-    mail(:to => '佐藤花子 <hanako@example.com>', :subject => '日本語件名') do |format|
-      format.text { render :inline => '日本語本文' }
+    mail(to: "佐藤花子 <hanako@example.com>", subject: "日本語件名") do |format|
+      format.text { render inline: "日本語本文" }
     end
   end
 end

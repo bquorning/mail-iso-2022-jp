@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module MailIso2022Jp
   module SubjectField
     def b_value_encode(string)
