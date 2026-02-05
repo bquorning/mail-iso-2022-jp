@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 3.2"
 
-  s.add_dependency "mail", ">= 2.8.0", "<= 2.8.1"
+  s.add_dependency "mail", ">= 2.8"
 
   s.files = %w(README.md Gemfile Rakefile) + Dir.glob("lib/**/*")
 end
