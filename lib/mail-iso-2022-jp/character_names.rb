@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module MailIso2022Jp
   WAVE_DASH = [0x301c].pack("U")
   FULLWIDTH_TILDE = [0xff5e].pack("U")

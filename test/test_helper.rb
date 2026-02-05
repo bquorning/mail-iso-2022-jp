@@ -1,6 +1,6 @@
-require 'minitest/autorun'
-require 'minitest/rg'
+require "minitest/autorun"
+require "minitest/rg"
 
-$:.unshift File.dirname(__FILE__) + '/..'
+$:.unshift File.dirname(__FILE__) + "/.."
 $:.unshift File.dirname(__FILE__)
-$:.unshift File.dirname(__FILE__) + '/../lib'
+$:.unshift File.dirname(__FILE__) + "/../lib"

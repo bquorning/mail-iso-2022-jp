@@ -1,33 +1,33 @@
-require 'rake'
-require 'rake/testtask'
-require 'rdoc/task'
+require "rake"
+require "rake/testtask"
+require "rdoc/task"
 
-desc 'Default: run unit tests.'
-task :default => :test
+desc "Default: run unit tests."
+task default: :test
 
-desc 'Test mail-iso-2022-jp library.'
+desc "Test mail-iso-2022-jp library."
 Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/mail_test.rb'
+  t.libs << "lib"
+  t.libs << "test"
+  t.pattern = "test/mail_test.rb"
   t.verbose = true
   t.warning = false
 end
 
-desc 'Test mail-iso-2022-jp library using action_mailer.'
+desc "Test mail-iso-2022-jp library using action_mailer."
 Rake::TestTask.new(:test_all) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/*_test.rb'
+  t.libs << "lib"
+  t.libs << "test"
+  t.pattern = "test/*_test.rb"
   t.verbose = true
   t.warning = false
 end
 
-desc 'Generate documentation for the mail-iso-2022-jp library.'
+desc "Generate documentation for the mail-iso-2022-jp library."
 RDoc::Task.new do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'MailIso2022Jp'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README.md')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+  rdoc.rdoc_dir = "rdoc"
+  rdoc.title = "MailIso2022Jp"
+  rdoc.options << "--line-numbers" << "--inline-source"
+  rdoc.rdoc_files.include("README.md")
+  rdoc.rdoc_files.include("lib/**/*.rb")
 end
