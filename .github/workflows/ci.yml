@@ -6,36 +6,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-
-          - {ruby: '2.7', mail: '~>2.6.0'}
-          - {ruby: '2.7', mail: '~>2.7.0'}
-          - {ruby: '2.7', mail: '~>2.8.0'}
-
-          - {ruby: '3.0', mail: '~>2.6.0'}
-          - {ruby: '3.0', mail: '~>2.7.0'}
-          - {ruby: '3.0', mail: '~>2.8.0'}
-
-          - {ruby: '3.1', mail: '~>2.6.0'}
-          - {ruby: '3.1', mail: '~>2.7.0'}
-          - {ruby: '3.1', mail: '~>2.8.0'}
-
-          - {ruby: '3.2', mail: '~>2.6.0'}
-          - {ruby: '3.2', mail: '~>2.7.0'}
-          - {ruby: '3.2', mail: '~>2.8.0'}
-
-          - {ruby: '3.3', mail: '~>2.6.0'}
-          - {ruby: '3.3', mail: '~>2.7.0'}
-          - {ruby: '3.3', mail: '~>2.8.0'}
-
-          - {ruby: '3.4', mail: '~>2.6.0'}
-          - {ruby: '3.4', mail: '~>2.7.0'}
-          - {ruby: '3.4', mail: '~>2.8.0'}
-
-          - {ruby: '4.0', mail: '~>2.6.0'}
-          - {ruby: '4.0', mail: '~>2.7.0'}
-          - {ruby: '4.0', mail: '~>2.8.0'}
-
+        ruby: ['3.2', '3.3', '3.4', '4.0']
+        mail: ['~>2.8.0']
     name: Ruby ${{ matrix.ruby }}, mail ${{ matrix.mail }}
     env:
       MAIL_GEM_VERSION: ${{ matrix.mail }}
@@ -52,49 +24,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-
-          - {ruby: '2.7', mail: '~>2.6.0', rails: '~>7.1.0'}
-          - {ruby: '2.7', mail: '~>2.7.0', rails: '~>7.1.0'}
-          - {ruby: '2.7', mail: '~>2.8.0', rails: '~>7.1.0'}
-
-          - {ruby: '3.0', mail: '~>2.6.0', rails: '~>7.1.0'}
-          - {ruby: '3.0', mail: '~>2.7.0', rails: '~>7.1.0'}
-          - {ruby: '3.0', mail: '~>2.8.0', rails: '~>7.1.0'}
-
-          - {ruby: '3.1', mail: '~>2.6.0', rails: '~>7.1.0'}
-          - {ruby: '3.1', mail: '~>2.7.0', rails: '~>7.1.0'}
-          - {ruby: '3.1', mail: '~>2.8.0', rails: '~>7.1.0'}
-          - {ruby: '3.1', mail: '~>2.8.0', rails: '~>7.2.0'}
-
-          - {ruby: '3.2', mail: '~>2.6.0', rails: '~>7.1.0'}
-          - {ruby: '3.2', mail: '~>2.7.0', rails: '~>7.1.0'}
-          - {ruby: '3.2', mail: '~>2.8.0', rails: '~>7.1.0'}
-          - {ruby: '3.2', mail: '~>2.8.0', rails: '~>7.2.0'}
-          - {ruby: '3.2', mail: '~>2.8.0', rails: '~>8.0.0'}
-          - {ruby: '3.2', mail: '~>2.8.0', rails: '~>8.1.0'}
-
-          - {ruby: '3.3', mail: '~>2.6.0', rails: '~>7.1.0'}
-          - {ruby: '3.3', mail: '~>2.7.0', rails: '~>7.1.0'}
-          - {ruby: '3.3', mail: '~>2.8.0', rails: '~>7.1.0'}
-          - {ruby: '3.3', mail: '~>2.8.0', rails: '~>7.2.0'}
-          - {ruby: '3.3', mail: '~>2.8.0', rails: '~>8.0.0'}
-          - {ruby: '3.3', mail: '~>2.8.0', rails: '~>8.1.0'}
-
-          - {ruby: '3.4', mail: '~>2.6.0', rails: '~>7.1.0'}
-          - {ruby: '3.4', mail: '~>2.7.0', rails: '~>7.1.0'}
-          - {ruby: '3.4', mail: '~>2.8.0', rails: '~>7.1.0'}
-          - {ruby: '3.4', mail: '~>2.8.0', rails: '~>7.2.0'}
-          - {ruby: '3.4', mail: '~>2.8.0', rails: '~>8.0.0'}
-          - {ruby: '3.4', mail: '~>2.8.0', rails: '~>8.1.0'}
-
-          - {ruby: '4.0', mail: '~>2.6.0', rails: '~>7.1.0'}
-          - {ruby: '4.0', mail: '~>2.7.0', rails: '~>7.1.0'}
-          - {ruby: '4.0', mail: '~>2.8.0', rails: '~>7.1.0'}
-          - {ruby: '4.0', mail: '~>2.8.0', rails: '~>7.2.0'}
-          - {ruby: '4.0', mail: '~>2.8.0', rails: '~>8.0.0'}
-          - {ruby: '4.0', mail: '~>2.8.0', rails: '~>8.1.0'}
-
+        ruby: ['3.2', '3.3', '3.4', '4.0']
+        mail: ['~>2.8.0']
+        rails: ['~>7.2.0', '~>8.0.0', '~>8.1.0']
     name: Rails ${{ matrix.rails }}, Ruby ${{ matrix.ruby }}, mail ${{ matrix.mail }}
     env:
       MAIL_GEM_VERSION: ${{ matrix.mail }}
