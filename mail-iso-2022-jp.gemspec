@@ -10,9 +10,9 @@ Gem::Specification.new do |s|
   s.summary     = "A set of patches that provides 'mail' gem with iso-2022-jp conversion capability."
   s.license     = "MIT"
 
-  s.required_ruby_version = ">= 2.7"
+  s.required_ruby_version = ">= 3.2"
 
-  s.add_dependency "mail", ">= 2.2.6", "<= 2.8.1"
+  s.add_dependency "mail", ">= 2.8.0", "<= 2.8.1"
 
   s.files = %w(README.md Gemfile Rakefile) + Dir.glob("lib/**/*")
 end
