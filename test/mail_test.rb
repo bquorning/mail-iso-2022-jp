@@ -53,6 +53,13 @@ class MailTest < Minitest::Test
     assert_equal NKF::JIS, NKF.guess(mail.body.encoded)
   end
 
+  def test_encodes_header
+    mail = Mail.new(:charset => 'ISO-2022-JP') do
+      header "Subject: hello world\r\n"
+    end
+    assert_equal "Subject: hello world\r\n", mail.header.encoded
+  end
+
   def test_sends_with_ISO_2022_JP_encoding_and_quoted_display_name
     mail = Mail.new(:charset => 'ISO-2022-JP') do
       from '" <Yamada 太郎>" <taro@example.com>'

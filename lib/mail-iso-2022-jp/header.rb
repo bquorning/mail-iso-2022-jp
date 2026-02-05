@@ -3,7 +3,7 @@
 module Mail
   Header.class_eval do
     def encoded
-      buffer = ''
+      buffer = +""
       fields.each do |field|
         buffer << field.encoded rescue Encoding::CompatibilityError
       end
