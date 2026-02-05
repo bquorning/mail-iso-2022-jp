@@ -1,5 +1,5 @@
-module Mail
-  class Preprocessor
+module MailIso2022Jp
+  module Preprocessor
     def self.process(value)
       value.to_s.
         gsub(/#{WAVE_DASH}/, FULLWIDTH_TILDE).

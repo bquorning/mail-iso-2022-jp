@@ -112,7 +112,7 @@ class MailTest < Minitest::Test
   end
 
   def test_raises_exeception_if_the_encoding_of_subject_is_not_UTF_8
-    assert_raises Mail::InvalidEncodingError do
+    assert_raises MailIso2022Jp::InvalidEncodingError do
       Mail.new(:charset => 'ISO-2022-JP') do
         from [ '山田太郎 <taro@example.com>' ]
         to [ '佐藤花子 <hanako@example.com>' ]
@@ -123,7 +123,7 @@ class MailTest < Minitest::Test
   end
 
   def test_raises_exeception_if_the_encoding_of_mail_body_is_not_UTF_8
-    assert_raises Mail::InvalidEncodingError do
+    assert_raises MailIso2022Jp::InvalidEncodingError do
       Mail.new(:charset => 'ISO-2022-JP') do
         from [ '山田太郎 <taro@example.com>' ]
         to [ '佐藤花子 <hanako@example.com>' ]

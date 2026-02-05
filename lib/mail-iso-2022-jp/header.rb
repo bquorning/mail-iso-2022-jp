@@ -1,9 +1,9 @@
 # coding: utf-8
 
-module Mail
-  Header.class_eval do
+module MailIso2022Jp
+  module Header
     def encoded
-      buffer = +""
+      buffer = String.new
       fields.each do |field|
         buffer << field.encoded rescue Encoding::CompatibilityError
       end
@@ -11,3 +11,4 @@ module Mail
     end
   end
 end
+::Mail::Header.prepend(::MailIso2022Jp::Header)
