@@ -9,7 +9,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby: ['3.2', '3.3', '3.4', '4.0']
-        mail: ['~>2.8.0']
+        mail: ['2.8.0', '2.8.1', '2.9.0']
     name: Ruby ${{ matrix.ruby }}, mail ${{ matrix.mail }}
     env:
       MAIL_GEM_VERSION: ${{ matrix.mail }}
@@ -27,7 +27,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby: ['3.2', '3.3', '3.4', '4.0']
-        mail: ['~>2.8.0']
+        mail: ['2.8.0', '2.8.1', '2.9.0']
         rails: ['~>7.2.0', '~>8.0.0', '~>8.1.0']
     name: Rails ${{ matrix.rails }}, Ruby ${{ matrix.ruby }}, mail ${{ matrix.mail }}
     env:
