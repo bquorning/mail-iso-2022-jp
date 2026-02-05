@@ -27,5 +27,5 @@ if rails_version == "edge"
 elsif rails_version
   gem "actionmailer", rails_version
 else
-  gem "actionmailer"
+  gem "actionmailer", ">= 7.2"
 end
