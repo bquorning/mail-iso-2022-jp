@@ -1,12 +1,11 @@
 # coding: utf-8
 
-require 'mail'
-
-module Mail
-  SubjectField.class_eval do
-    include FieldWithIso2022JpEncoding
+module MailIso2022Jp
+  module SubjectField
     def b_value_encode(string)
       encode64(string)
     end
   end
 end
+::Mail::SubjectField.prepend(::MailIso2022Jp::FieldWithIso2022JpEncoding)
+::Mail::SubjectField.prepend(::MailIso2022Jp::SubjectField)

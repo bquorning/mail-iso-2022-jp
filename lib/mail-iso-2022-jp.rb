@@ -1,8 +1,14 @@
+module MailIso2022Jp
+  ENCODE = { 'iso-2022-jp' => Encoding::CP50221 }
+
+  def self.encoding_to_charset(str, charset)
+    str.encode(ENCODE[charset.to_s.downcase] || charset, :undef => :replace).force_encoding(charset)
+  end
+end
+
 require 'mail-iso-2022-jp/character_names'
 require 'mail-iso-2022-jp/invalid_encoding_error'
-require 'mail-iso-2022-jp/common_methods_for_field'
 require 'mail-iso-2022-jp/preprocessor'
-require 'mail-iso-2022-jp/mail'
 require 'mail-iso-2022-jp/message'
 require 'mail-iso-2022-jp/field'
 require 'mail-iso-2022-jp/field_with_iso_2022_jp_encoding'
